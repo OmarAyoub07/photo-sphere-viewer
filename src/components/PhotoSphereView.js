@@ -3,17 +3,24 @@ import { useState } from "react";
 import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer";
 import { MarkersPlugin } from "@photo-sphere-viewer/markers-plugin";
 import "@photo-sphere-viewer/markers-plugin/index.css";
+import { useNavigate } from "react-router-dom";
 
 const PhotoSphereView = ({ imageUrl, caption, markers }) => {
   const [loading, setLoading] = useState(true);
   const plugins = [[MarkersPlugin, { markers }]];
 
+  // inside component
+  const navigate = useNavigate();
+
   const handleReady = (instance) => {
-    setLoading(false); // hide loader
+    setLoading(false);
     const markersPlugin = instance.getPlugin(MarkersPlugin);
     markersPlugin.addEventListener("select-marker", (e) => {
       const url = e.marker.data?.link;
-      if (url) window.open(url, "_blank");
+      if (url) {
+        if (url.startsWith("/")) navigate(url);
+        else window.open(url, "_blank");
+      }
     });
   };
 
@@ -50,6 +57,7 @@ const PhotoSphereView = ({ imageUrl, caption, markers }) => {
         mousewheelCtrlKey
         plugins={plugins}
         onReady={handleReady}
+        defaultZoomLvl={0}
       />
     </div>
   );
