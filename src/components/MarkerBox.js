@@ -27,7 +27,6 @@
 //   data: { link },
 // });
 import ReactDOMServer from "react-dom/server";
-import React from "react";
 import MarkerButton from "./MarkerButton";
 
 export const createBoxMarker = ({ id, title, yaw, pitch, tooltip, link }) => {

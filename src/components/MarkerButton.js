@@ -3,8 +3,12 @@ const MarkerButton = ({ title }) => {
     <div
       style={{
         position: "relative",
-        width: 120, // slightly larger for better clarity
-        height: 70,
+        width: "18vw", // responsive width
+        maxWidth: 250,
+        minWidth: 120,
+        height: "10vw", // responsive height
+        maxHeight: 140,
+        minHeight: 70,
         cursor: "pointer",
       }}
     >
@@ -21,12 +25,12 @@ const MarkerButton = ({ title }) => {
       <div
         style={{
           position: "absolute",
-          top: "45%", // centered more accurately
+          top: "44%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           fontFamily: "SoakedBlood",
-          fontSize: 18, // increased for readability
-          fontWeight: "normal", // ✅ not bold
+          fontSize: "2vw", // scales with screen
+          fontWeight: "normal",
           color: "white",
           textShadow: "0 0 4px black",
           whiteSpace: "nowrap",
