@@ -28,11 +28,28 @@
 // });
 import ReactDOMServer from "react-dom/server";
 import MarkerButton from "./MarkerButton";
+import MarkerShape from "./MarkerShape";
 
 export const createBoxMarker = ({ id, title, yaw, pitch, tooltip, link }) => {
   const buttonElement = document.createElement("div");
   buttonElement.innerHTML = ReactDOMServer.renderToString(
     <MarkerButton title={title} />
+  );
+
+  return {
+    id,
+    position: { yaw, pitch },
+    element: buttonElement,
+    anchor: "bottom center",
+    tooltip,
+    data: { link },
+  };
+};
+
+export const createMarkerShape = ({ id, title, yaw, pitch, tooltip, link }) => {
+  const buttonElement = document.createElement("div");
+  buttonElement.innerHTML = ReactDOMServer.renderToString(
+    <MarkerShape   title={title} />
   );
 
   return {
